@@ -1,16 +1,82 @@
-# React + Vite
+# 🌱 Karla Rodríguez Santos | Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
+  <img src="src/assets/karla_profile_pic.png" width="150" height="150" style="border-radius: 50%; border: 4px solid #22c55e;" />
+  <p><strong>Graduada en Ciencias Agrarias y Bioeconomía</strong></p>
+  <p><em>Especializándose en Agricultura de Precisión & Sostenibilidad</em></p>
 
-Currently, two official plugins are available:
+  [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+  [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+  [![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+</div>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🌎 Sobre el Proyecto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Esta es una landing page moderna diseñada para resaltar la trayectoria académica y profesional de **Karla Rodríguez Santos**. El objetivo principal es profesionalizar su marca personal y facilitar la conexión con expertos del sector agrícola, investigación e innovación.
 
-## Expanding the ESLint configuration
+### ✨ Características
+- 🎨 **Diseño Moderno & Orgánico**: Inspirado en la naturaleza con toques tecnológicos.
+- 📱 **Totalmente Responsivo**: Adaptado para móviles, tablets y ordenadores.
+- 🎭 **Animaciones Fluídas**: Experiencia de usuario dinámica con Framer Motion.
+- ✉️ **Formulario Funcional**: Integración con FormSubmit para recepción de mensajes.
+- 🌿 **Estética Glassmorphism**: Capas semitransparentes que aportan profundidad y elegancia.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Stack Tecnológico
+
+- **Frontend**: React.js con Hooks modernos.
+- **Estilos**: Tailwind CSS 4.0 (Configuración avanzada `@theme`).
+- **Iconografía**: Lucide React.
+- **Animaciones**: Framer Motion.
+- **Hosting**: Preparado para Vercel o GitHub Pages.
+
+## 🚀 Inicio Rápido
+
+### Requisitos previos
+- Node.js (v18+)
+- npm o yarn
+
+### Instalación
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/ivannr23/karlanding.git
+   ```
+
+2. Entra en el directorio:
+   ```bash
+   cd karlanding
+   ```
+
+3. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+
+4. Lanza el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+
+## 📂 Estructura de Carpetas
+
+```
+├── src/
+│   ├── assets/          # Imágenes y recursos estáticos
+│   ├── components/      # Componentes modulares (Hero, About, Contact, etc.)
+│   ├── utils/           # Utilidades (cn helper)
+│   ├── App.jsx          # Componente principal
+│   └── index.css        # Estilos globales y tokens de diseño
+├── public/              # Archivos públicos
+└── tailwind.config.js   # (Solo si se requiere personalización legacy)
+```
+
+## 📩 Contacto
+
+Si tienes alguna duda o quieres colaborar, puedes contactar a través de la web o directamente a:
+📧 **karlanavadijos3012@gmail.com**
+
+---
+Desarrollado con ❤️ por [ivannr23](https://github.com/ivannr23) - 2025
