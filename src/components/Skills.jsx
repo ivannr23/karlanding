@@ -91,7 +91,7 @@ const Skills = () => {
                                                 viewport={{ once: true }}
                                                 transition={{ duration: 1.5, ease: "easeOut" }}
                                                 className={`h-full ${group.title.includes('Técnicas') ? 'bg-nature-500' :
-                                                        group.title.includes('Software') ? 'bg-sky-500' : 'bg-gold-500'
+                                                    group.title.includes('Software') ? 'bg-sky-500' : 'bg-gold-500'
                                                     }`}
                                             />
                                         </div>

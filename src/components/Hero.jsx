@@ -1,32 +1,26 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sprout, ArrowRight, Globe, TrendingUp } from 'lucide-react';
 import karlaPic from '../assets/karla_profile_pic.png';
 
 const Hero = () => {
+    const { scrollY } = useScroll();
+    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+    const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+    const rotate = useTransform(scrollY, [0, 500], [0, 45]);
+
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 px-6">
             {/* Background Elements */}
             <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-nature-200/40 rounded-full blur-[100px] animate-pulse" />
             <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-sky-200/40 rounded-full blur-[100px] animate-pulse delay-1000" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-100/30 rounded-full blur-[120px]" />
 
-            {/* Floating Organic Shapes */}
+            {/* Parallax Floating Shapes */}
             <motion.div
-                animate={{
-                    y: [0, -20, 0],
-                    rotate: [0, 5, 0],
-                    scale: [1, 1.05, 1]
-                }}
-                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                style={{ y: y1, rotate }}
                 className="absolute top-20 right-[15%] w-32 h-32 bg-nature-400/20 organic-shape hidden md:block"
             />
             <motion.div
-                animate={{
-                    y: [0, 20, 0],
-                    rotate: [0, -10, 0],
-                    scale: [1, 0.95, 1]
-                }}
-                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                style={{ y: y2, rotate: -rotate }}
                 className="absolute bottom-40 left-[10%] w-48 h-48 bg-gold-400/20 organic-shape hidden md:block"
             />
 
@@ -91,7 +85,6 @@ const Hero = () => {
                     className="relative"
                 >
                     <div className="relative w-full aspect-square max-w-[500px] mx-auto">
-                        {/* Visual placeholder or abstract design representing growth */}
                         <div className="absolute inset-0 organic-shape bg-gradient-to-br from-nature-400 via-sky-400 to-gold-400 shadow-2xl opacity-80 animate-growth" />
                         <div className="absolute inset-4 organic-shape glass flex items-center justify-center p-8 text-center">
                             <div className="relative z-10">
