@@ -9,7 +9,7 @@ const Hero = () => {
     const rotate = useTransform(scrollY, [0, 500], [0, 45]);
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center pt-32 pb-64 md:py-24 px-6 overflow-visible">
+        <section className="relative min-h-screen flex items-center justify-center pt-32 pb-20 md:py-24 px-6 overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-[-5%] right-[-10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-nature-200/40 rounded-full blur-[80px] md:blur-[100px] animate-pulse" />
             <div className="absolute bottom-[-5%] left-[-10%] w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-sky-200/40 rounded-full blur-[80px] md:blur-[100px] animate-pulse delay-1000" />
@@ -24,7 +24,7 @@ const Hero = () => {
                 className="absolute bottom-40 left-[10%] w-48 h-48 bg-gold-400/20 organic-shape hidden md:block"
             />
 
-            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 md:gap-12 items-center relative z-10">
+            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-12 items-center relative z-10">
                 {/* Text Content: Standard Order (Top on Mobile) */}
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
@@ -87,9 +87,9 @@ const Hero = () => {
                     transition={{ duration: 1, delay: 0.2 }}
                     className="relative flex justify-center items-center"
                 >
-                    <div className="relative w-full aspect-square max-w-[300px] sm:max-w-[420px] md:max-w-[500px] flex items-center justify-center">
-                        {/* Enlarged glow that isn't clipped */}
-                        <div className="absolute inset-[-10%] organic-shape bg-gradient-to-br from-nature-400 via-sky-400 to-gold-400 shadow-2xl opacity-60 animate-growth filter blur-md" />
+                    <div className="relative w-full aspect-square max-w-[280px] sm:max-w-[400px] md:max-w-[500px] flex items-center justify-center">
+                        {/* Enlarged glow - REMOVED BLUR to fix blurriness */}
+                        <div className="absolute inset-[-6%] organic-shape bg-gradient-to-br from-nature-400 via-sky-400 to-gold-400 shadow-2xl opacity-60 animate-growth" />
 
                         {/* Main Glass Card */}
                         <div className="relative z-10 w-full h-full organic-shape bg-white/90 backdrop-blur-md flex items-center justify-center p-8 text-center border border-white/50 shadow-2xl">
