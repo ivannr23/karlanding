@@ -65,15 +65,6 @@ const LoadingScreen = () => {
                 </div>
             </div>
 
-            {/* Metadata Decorators */}
-            <div className="absolute bottom-10 left-10 opacity-30 font-mono text-[10px] text-slate-400 space-y-1">
-                <div>SYS_LOAD: PRECISION_AG_v2.0</div>
-                <div>BUFFER_SIZE: 1024KB</div>
-            </div>
-            <div className="absolute bottom-10 right-10 opacity-30 font-mono text-[10px] text-slate-400 text-right space-y-1">
-                <div>COORDINATES: 40.4168° N, 3.7038° W</div>
-                <div>STATUS: ENCRYPTING_RESOURCES</div>
-            </div>
         </motion.div>
     );
 };
