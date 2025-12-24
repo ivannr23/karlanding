@@ -9,7 +9,7 @@ const Hero = () => {
     const rotate = useTransform(scrollY, [0, 500], [0, 45]);
 
     return (
-        <section className="relative min-h-[110vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-32 md:pt-20 px-6">
+        <section className="relative min-h-screen flex items-center justify-center pt-32 pb-24 md:py-20 px-6">
             {/* Background Elements */}
             <div className="absolute top-[-5%] right-[-10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-nature-200/40 rounded-full blur-[80px] md:blur-[100px] animate-pulse" />
             <div className="absolute bottom-[-10%] left-[-10%] w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-sky-200/40 rounded-full blur-[80px] md:blur-[100px] animate-pulse delay-1000" />
@@ -80,14 +80,14 @@ const Hero = () => {
                 </motion.div>
 
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    className="relative order-1 md:order-2 mb-4 md:mb-0"
+                    className="relative order-1 md:order-2 mb-12 md:mb-0"
                 >
-                    <div className="relative w-full aspect-square max-w-[300px] sm:max-w-[400px] md:max-w-[500px] mx-auto">
-                        <div className="absolute inset-[-4%] organic-shape bg-gradient-to-br from-nature-400 via-sky-400 to-gold-400 shadow-2xl opacity-70 animate-growth md:scale-110" />
-                        <div className="absolute inset-0 organic-shape bg-white/95 backdrop-blur-md flex items-center justify-center p-6 md:p-8 text-center border border-white shadow-xl">
+                    <div className="relative w-full aspect-square max-w-[280px] sm:max-w-[400px] md:max-w-[500px] mx-auto">
+                        <div className="absolute inset-[-8%] organic-shape bg-gradient-to-br from-nature-400 via-sky-400 to-gold-400 shadow-2xl opacity-70 animate-growth" />
+                        <div className="absolute inset-0 organic-shape bg-white/95 backdrop-blur-md flex items-center justify-center p-6 md:p-10 text-center border border-white shadow-xl">
                             <div className="relative z-10 w-full flex flex-col items-center">
                                 <div className="w-24 h-24 md:w-32 md:h-32 bg-nature-100 rounded-full flex items-center justify-center mb-4 md:mb-6 shadow-md overflow-hidden border-4 border-white">
                                     <img src={karlaPic} alt="Karla Rodríguez Santos" className="w-full h-full object-cover" />
