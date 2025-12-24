@@ -42,7 +42,7 @@ const Navbar = () => {
                         <Leaf size={20} />
                     </div>
                     <span className="font-bold text-xl tracking-tight text-nature-900 hidden sm:block">
-                        Karla Rodríguez
+                        Karla Rodríguez Santos
                     </span>
                 </motion.div>
 

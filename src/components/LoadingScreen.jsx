@@ -47,7 +47,7 @@ const LoadingScreen = () => {
                     className="text-center"
                 >
                     <h2 className="text-slate-900 font-bold text-xl tracking-widest uppercase">
-                        Karla Rodríguez
+                        Karla Rodríguez Santos
                     </h2>
                     <p className="text-nature-600 text-xs font-mono mt-2 tracking-[0.3em]">
                         Iniciando Protocolos Agrícolas
