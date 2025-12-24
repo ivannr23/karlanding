@@ -9,7 +9,7 @@ const LoadingScreen = () => {
                 opacity: 0,
                 transition: { duration: 0.8, ease: "easeInOut" }
             }}
-            className="fixed inset-0 z-[100] bg-slate-900 flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[100] bg-nature-50 flex flex-col items-center justify-center"
         >
             <div className="relative">
                 {/* Outer Glow */}
@@ -46,16 +46,16 @@ const LoadingScreen = () => {
                     transition={{ delay: 0.3 }}
                     className="text-center"
                 >
-                    <h2 className="text-white font-bold text-xl tracking-widest uppercase">
+                    <h2 className="text-slate-900 font-bold text-xl tracking-widest uppercase">
                         Karla Rodríguez
                     </h2>
-                    <p className="text-nature-400 text-xs font-mono mt-2 tracking-[0.3em]">
+                    <p className="text-nature-600 text-xs font-mono mt-2 tracking-[0.3em]">
                         Iniciando Protocolos Agrícolas
                     </p>
                 </motion.div>
 
                 {/* Progress Bar */}
-                <div className="mt-6 h-1 w-full bg-white/10 rounded-full overflow-hidden">
+                <div className="mt-6 h-1 w-full bg-slate-200 rounded-full overflow-hidden">
                     <motion.div
                         initial={{ x: "-100%" }}
                         animate={{ x: "0%" }}
@@ -66,13 +66,13 @@ const LoadingScreen = () => {
             </div>
 
             {/* Metadata Decorators */}
-            <div className="absolute bottom-10 left-10 opacity-20 font-mono text-[10px] text-white space-y-1">
+            <div className="absolute bottom-10 left-10 opacity-30 font-mono text-[10px] text-slate-400 space-y-1">
                 <div>SYS_LOAD: PRECISION_AG_v2.0</div>
                 <div>BUFFER_SIZE: 1024KB</div>
             </div>
-            <div className="absolute bottom-10 right-10 opacity-20 font-mono text-[10px] text-white text-right space-y-1">
+            <div className="absolute bottom-10 right-10 opacity-30 font-mono text-[10px] text-slate-400 text-right space-y-1">
                 <div>COORDINATES: 40.4168° N, 3.7038° W</div>
-                <div>STTAUS: ENCRYPTING_RESOURCES</div>
+                <div>STATUS: ENCRYPTING_RESOURCES</div>
             </div>
         </motion.div>
     );
