@@ -9,7 +9,7 @@ const Hero = () => {
     const rotate = useTransform(scrollY, [0, 500], [0, 45]);
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center pt-32 pb-20 md:py-24 px-6 overflow-hidden">
+        <section className="relative min-h-screen flex items-center justify-center pt-32 pb-16 md:py-24 px-6 overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-[-5%] right-[-10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-nature-200/40 rounded-full blur-[80px] md:blur-[100px] animate-pulse" />
             <div className="absolute bottom-[-5%] left-[-10%] w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-sky-200/40 rounded-full blur-[80px] md:blur-[100px] animate-pulse delay-1000" />
@@ -24,8 +24,8 @@ const Hero = () => {
                 className="absolute bottom-40 left-[10%] w-48 h-48 bg-gold-400/20 organic-shape hidden md:block"
             />
 
-            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-12 items-center relative z-10">
-                {/* Text Content: Standard Order (Top on Mobile) */}
+            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-12 items-center relative z-10 w-full">
+                {/* Text Content: Standard Order */}
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -80,38 +80,49 @@ const Hero = () => {
                     </div>
                 </motion.div>
 
-                {/* Profile Card: Below text on Mobile */}
+                {/* Right Content: Profile Card (Desktop) / Info Banners (Mobile) */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    className="relative flex justify-center items-center"
+                    className="relative flex justify-center items-center w-full"
                 >
-                    <div className="relative w-full aspect-square max-w-[280px] sm:max-w-[400px] md:max-w-[500px] flex items-center justify-center">
-                        {/* Enlarged glow - REMOVED BLUR to fix blurriness */}
+                    {/* MOBILE ONLY: Simple Info Banners */}
+                    <div className="md:hidden w-full grid grid-cols-2 gap-4 max-w-[340px] pt-4">
+                        <div className="p-5 rounded-2xl bg-white shadow-xl shadow-nature-100 border border-nature-100 flex flex-col items-center justify-center text-center">
+                            <p className="text-[10px] text-slate-400 uppercase font-black tracking-widest mb-2">Impacto</p>
+                            <p className="font-bold text-nature-600 text-sm uppercase">Sostenible</p>
+                        </div>
+                        <div className="p-5 rounded-2xl bg-white shadow-xl shadow-sky-100 border border-sky-100 flex flex-col items-center justify-center text-center">
+                            <p className="text-[10px] text-slate-400 uppercase font-black tracking-widest mb-2">Malla</p>
+                            <p className="font-bold text-sky-600 text-sm uppercase">Precisión</p>
+                        </div>
+                    </div>
+
+                    {/* DESKTOP ONLY: Full Profile Card with Glow */}
+                    <div className="hidden md:flex relative w-full aspect-square max-w-[500px] items-center justify-center">
                         <div className="absolute inset-[-6%] organic-shape bg-gradient-to-br from-nature-400 via-sky-400 to-gold-400 shadow-2xl opacity-60 animate-growth" />
 
-                        {/* Main Glass Card */}
-                        <div className="relative z-10 w-full h-full organic-shape bg-white/90 backdrop-blur-md flex items-center justify-center p-8 text-center border border-white/50 shadow-2xl">
+                        <div className="relative z-10 w-full h-full organic-shape bg-white/90 backdrop-blur-md flex items-center justify-center p-10 text-center border border-white/50 shadow-2xl">
                             <div className="flex flex-col items-center w-full">
-                                <div className="w-24 h-24 md:w-32 md:h-32 bg-nature-50 rounded-full flex items-center justify-center mb-6 shadow-inner overflow-hidden border-4 border-white shrink-0">
+                                <div className="w-32 h-32 bg-nature-50 rounded-full flex items-center justify-center mb-6 shadow-inner overflow-hidden border-4 border-white shrink-0">
                                     <img src={karlaPic} alt="Karla Rodríguez Santos" className="w-full h-full object-cover" />
                                 </div>
-                                <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-1 leading-tight tracking-tight">
+                                <h3 className="text-2xl font-black text-slate-800 mb-1 leading-tight tracking-tight">
                                     Karla Rodríguez Santos
                                 </h3>
-                                <p className="text-[10px] md:text-sm text-slate-500 font-bold italic mb-8 uppercase tracking-widest opacity-80">
+                                <p className="text-sm text-slate-500 font-bold italic mb-10 uppercase tracking-widest opacity-80">
                                     Ciencias Agrarias & Bioeconomía
                                 </p>
 
                                 <div className="grid grid-cols-2 gap-4 w-full">
-                                    <div className="p-3 md:p-4 rounded-2xl bg-nature-50/80 border border-nature-100 shadow-sm flex flex-col items-center justify-center transition-transform hover:scale-105">
-                                        <p className="text-[8px] md:text-[9px] text-slate-400 uppercase font-black tracking-tighter mb-1">Impacto</p>
-                                        <p className="font-bold text-nature-600 text-[10px] md:text-sm uppercase">Sostenible</p>
+                                    <div className="p-4 rounded-2xl bg-nature-50/80 border border-nature-100 shadow-sm flex flex-col items-center justify-center transition-transform hover:scale-105">
+                                        <p className="text-[9px] text-slate-400 uppercase font-black tracking-tighter mb-1">Impacto</p>
+                                        <p className="font-bold text-nature-600 text-sm uppercase">Sostenible</p>
                                     </div>
-                                    <div className="p-3 md:p-4 rounded-2xl bg-sky-50/80 border border-sky-100 shadow-sm flex flex-col items-center justify-center transition-transform hover:scale-105">
-                                        <p className="text-[8px] md:text-[9px] text-slate-400 uppercase font-black tracking-tighter mb-1">Malla</p>
-                                        <p className="font-bold text-sky-600 text-[10px] md:text-sm uppercase">Precisión</p>
+                                    <div className="p-4 rounded-2xl bg-sky-50/80 border border-sky-100 shadow-sm flex flex-col items-center justify-center transition-transform hover:scale-105">
+                                        <p className="text-[9px] text-slate-400 uppercase font-black tracking-tighter mb-1">Malla</p>
+                                        <p className="font-bold text-sky-600 text-sm uppercase">Precisión</p>
                                     </div>
                                 </div>
                             </div>
