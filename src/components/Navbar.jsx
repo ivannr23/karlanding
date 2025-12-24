@@ -96,7 +96,15 @@ const Navbar = () => {
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    onClick={() => setMobileMenuOpen(false)}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setMobileMenuOpen(false);
+                                        const id = link.href.replace('#', '');
+                                        const element = document.getElementById(id);
+                                        if (element) {
+                                            element.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }}
                                     className="text-lg font-medium text-slate-700 hover:text-nature-600 transition-colors px-4 py-2 rounded-xl hover:bg-nature-50"
                                 >
                                     {link.name}
