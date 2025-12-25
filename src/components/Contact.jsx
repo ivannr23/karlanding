@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Linkedin, Globe, MapPin, Send, ShieldCheck, AlertCircle } from 'lucide-react';
+import { trackEvent } from '../utils/analytics';
 
 const Contact = () => {
     const [status, setStatus] = useState('idle');
@@ -9,8 +10,10 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('sending');
+        trackEvent('form_submit_start');
 
         const formData = new FormData(e.currentTarget);
+
         const data = Object.fromEntries(formData.entries());
 
         try {
@@ -35,13 +38,17 @@ const Contact = () => {
             const result = await response.json();
             if (result.success === "true") {
                 setStatus('success');
+                trackEvent('form_submit_success');
                 formRef.current?.reset();
             } else {
                 setStatus('error');
+                trackEvent('form_submit_error', { reason: result.message });
             }
         } catch (error) {
             setStatus('error');
+            trackEvent('form_submit_error', { reason: error.message });
         }
+
     };
 
     return (

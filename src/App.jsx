@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -10,6 +11,65 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
+import AnalyticsDashboard from './components/Admin/AnalyticsDashboard';
+import { trackPageView } from './utils/analytics';
+
+import { useRef } from 'react';
+
+// Component to handle tracking on route change
+function AnalyticsTracker() {
+  const location = useLocation();
+  const lastTrackedPath = useRef(null);
+
+  useEffect(() => {
+    // Prevent double tracking in Strict Mode or rapid updates
+    if (lastTrackedPath.current === location.pathname + location.search) return;
+
+    lastTrackedPath.current = location.pathname + location.search;
+    trackPageView();
+  }, [location]);
+
+  return null;
+}
+
+
+function MainSite() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            trackEvent('view_section', { section: entry.target.id });
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const sections = ['hero', 'about', 'education', 'expertise', 'experience', 'skills', 'contact'];
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <>
+      <Navbar />
+      <Hero />
+      <About />
+      <Education />
+      <Expertise />
+      <Experience />
+      <Skills />
+      <Contact />
+      <Footer />
+    </>
+  );
+}
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -30,24 +90,23 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-nature-50 selection:bg-nature-200 selection:text-nature-900 overflow-x-hidden">
-      <AnimatePresence>
-        {loading && <LoadingScreen key="loading" />}
-      </AnimatePresence>
+    <Router>
+      <AnalyticsTracker />
+      <div className="min-h-screen bg-nature-50 selection:bg-nature-200 selection:text-nature-900 overflow-x-hidden">
+        <AnimatePresence>
+          {loading && <LoadingScreen key="loading" />}
+        </AnimatePresence>
 
-      <div className={loading ? 'hidden' : 'block'}>
-        <Navbar />
-        <Hero />
-        <About />
-        <Education />
-        <Expertise />
-        <Experience />
-        <Skills />
-        <Contact />
-        <Footer />
+        <div className={loading ? 'hidden' : 'block'}>
+          <Routes>
+            <Route path="/" element={<MainSite />} />
+            <Route path="/admin" element={<AnalyticsDashboard />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
 export default App;
+
