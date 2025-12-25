@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+
 import About from './components/About';
 import Education from './components/Education';
 import Expertise from './components/Expertise';
@@ -12,7 +13,9 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
 import AnalyticsDashboard from './components/Admin/AnalyticsDashboard';
-import { trackPageView } from './utils/analytics';
+import Chatbot from './components/Chatbot';
+import { trackPageView, trackEvent } from './utils/analytics';
+
 
 import { useRef } from 'react';
 
@@ -71,8 +74,16 @@ function MainSite() {
 }
 
 
-function App() {
+function AppContent() {
+  const location = useLocation();
   const [loading, setLoading] = useState(true);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
     // Add smooth scroll behavior to the whole document
@@ -90,23 +101,39 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <div className="min-h-screen bg-nature-50 selection:bg-nature-200 selection:text-nature-900 overflow-x-hidden">
+      {location.pathname === '/' && (
+        <motion.div
+          id="scroll-progress"
+          style={{ scaleX }}
+        />
+      )}
       <AnalyticsTracker />
-      <div className="min-h-screen bg-nature-50 selection:bg-nature-200 selection:text-nature-900 overflow-x-hidden">
-        <AnimatePresence>
-          {loading && <LoadingScreen key="loading" />}
-        </AnimatePresence>
+      {location.pathname !== '/admin' && <Chatbot />}
 
-        <div className={loading ? 'hidden' : 'block'}>
-          <Routes>
-            <Route path="/" element={<MainSite />} />
-            <Route path="/admin" element={<AnalyticsDashboard />} />
-          </Routes>
-        </div>
+
+      <AnimatePresence>
+        {loading && <LoadingScreen key="loading" />}
+      </AnimatePresence>
+
+      <div className={loading ? 'hidden' : 'block'}>
+        <Routes>
+          <Route path="/" element={<MainSite />} />
+          <Route path="/admin" element={<AnalyticsDashboard />} />
+        </Routes>
       </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
+
 
 export default App;
 

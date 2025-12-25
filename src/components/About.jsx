@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { User, Target, Award } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 import karlaPic from '../assets/karla_profile_pic.png';
 
 const About = () => {
@@ -7,13 +8,9 @@ const About = () => {
         <section id="about" className="py-24 px-6 bg-white relative overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="order-2 md:order-1"
-                    >
+                    <ScrollReveal direction="left">
                         <h2 className="text-4xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+
                             <span className="w-12 h-12 bg-nature-100 rounded-xl flex items-center justify-center text-nature-600">
                                 <User size={24} />
                             </span>
@@ -44,14 +41,9 @@ const About = () => {
                                 <p className="text-sm text-slate-500 italic">Sostenibilidad, Precisión, Innovación e Integridad Profesional.</p>
                             </div>
                         </div>
-                    </motion.div>
+                    </ScrollReveal>
 
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        className="order-1 md:order-2"
-                    >
+                    <ScrollReveal direction="right" className="order-1 md:order-2">
                         <div className="relative">
                             {/* Decorative background for the abstract "photo" area */}
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-nature-100 rounded-full blur-[40px] opacity-50" />
@@ -74,7 +66,8 @@ const About = () => {
                                 </motion.div>
                             </div>
                         </div>
-                    </motion.div>
+                    </ScrollReveal>
+
                 </div>
             </div>
         </section>

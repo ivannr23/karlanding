@@ -1,7 +1,16 @@
-import { motion } from 'framer-motion';
+
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sprout, BarChart3, FlaskConical, Globe } from 'lucide-react';
+import { useRef } from 'react';
+import ScrollReveal from './ScrollReveal';
 
 const Expertise = () => {
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
     const areas = [
         {
             title: "Agricultura Sostenible",
@@ -35,62 +44,71 @@ const Expertise = () => {
 
     const getColorClasses = (color) => {
         const classes = {
-            nature: "bg-nature-50 text-nature-600 group-hover:bg-nature-600",
-            gold: "bg-gold-50 text-gold-600 group-hover:bg-gold-600",
-            sky: "bg-sky-50 text-sky-600 group-hover:bg-sky-600"
+            nature: "bg-nature-50 text-nature-600 group-hover:bg-nature-600 shadow-nature-100",
+            gold: "bg-gold-50 text-gold-600 group-hover:bg-gold-600 shadow-gold-100",
+            sky: "bg-sky-50 text-sky-600 group-hover:bg-sky-600 shadow-sky-100"
         };
         return classes[color];
     };
 
     return (
-        <section id="expertise" className="py-24 px-6 bg-white">
-            <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-20">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        className="text-4xl font-bold text-slate-900 mb-4"
-                    >
-                        Áreas de Expertise
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-slate-500 max-w-2xl mx-auto"
-                    >
-                        Combinando el conocimiento tradicional con las herramientas tecnológicas más disruptivas del sector agrónomo.
-                    </motion.p>
+        <section id="expertise" ref={containerRef} className="py-32 px-6 bg-white relative overflow-hidden">
+            {/* Background Parallax Title */}
+            <motion.div
+                style={{ x: useTransform(scrollYProgress, [0, 1], [-100, 100]) }}
+                className="absolute bottom-0 left-0 text-[15rem] font-black text-slate-50 select-none pointer-events-none uppercase leading-none"
+            >
+                Expertise
+            </motion.div>
+
+            <div className="max-w-7xl mx-auto relative z-10">
+                <div className="text-center mb-24">
+                    <ScrollReveal>
+                        <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 uppercase tracking-tighter">
+                            Áreas de <span className="gradient-text italic">Expertise</span>
+                        </h2>
+                    </ScrollReveal>
+                    <ScrollReveal delay={0.2}>
+                        <p className="text-slate-500 max-w-2xl mx-auto text-lg font-medium">
+                            Combinando el conocimiento tradicional con las herramientas tecnológicas más disruptivas del sector agrónomo.
+                        </p>
+                    </ScrollReveal>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {areas.map((area, idx) => (
-                        <motion.div
+                        <ScrollReveal
                             key={area.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
-                            whileHover={{ y: -10 }}
-                            className="group glass p-8 rounded-[2rem] border-slate-100 hover:border-nature-200 transition-all duration-300"
+                            delay={idx * 0.1}
+                            direction={idx % 2 === 0 ? "up" : "down"}
                         >
-                            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-colors duration-300 group-hover:text-white ${getColorClasses(area.color)}`}>
-                                {area.icon}
-                            </div>
+                            <motion.div
+                                whileHover={{ y: -15, scale: 1.02 }}
+                                className="group glass p-10 rounded-[3rem] border-slate-100/50 hover:border-nature-200 transition-all duration-500 cursor-pointer h-full relative overflow-hidden bg-white/50"
+                            >
+                                {/* Hover background decorative circle */}
+                                <div className={`absolute -bottom-10 -right-10 w-32 h-32 rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-${area.color}-500`} />
 
-                            <h3 className="text-xl font-bold text-slate-900 mb-4">{area.title}</h3>
-                            <p className="text-slate-500 mb-8 text-sm leading-relaxed">
-                                {area.description}
-                            </p>
+                                <div className={`w-20 h-20 rounded-3xl flex items-center justify-center mb-10 transition-all duration-500 group-hover:text-white group-hover:shadow-2xl group-hover:rotate-6 ${getColorClasses(area.color)} shadow-xl`}>
+                                    {area.icon}
+                                </div>
 
-                            <div className="flex flex-wrap gap-2">
-                                {area.tags.map(tag => (
-                                    <span key={tag} className="text-[10px] font-bold uppercase tracking-tighter text-slate-400 border border-slate-100 px-2 py-1 rounded-md">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        </motion.div>
+                                <h3 className="text-2xl font-black text-slate-900 mb-4 uppercase tracking-tight group-hover:text-nature-600 transition-colors leading-tight">
+                                    {area.title}
+                                </h3>
+                                <p className="text-slate-500 mb-10 text-base leading-relaxed font-medium">
+                                    {area.description}
+                                </p>
+
+                                <div className="flex flex-wrap gap-2 mt-auto">
+                                    {area.tags.map((tag, i) => (
+                                        <span key={tag} className="text-[10px] font-black uppercase tracking-widest text-slate-400 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-100 group-hover:border-nature-200 group-hover:text-nature-600 transition-all">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        </ScrollReveal>
                     ))}
                 </div>
             </div>

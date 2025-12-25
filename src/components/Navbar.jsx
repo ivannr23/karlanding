@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Leaf, Menu, X } from 'lucide-react';
+import { Leaf, Menu, X, ArrowRight } from 'lucide-react';
+
 import { cn } from '../utils/cn';
 
 const Navbar = () => {
@@ -91,18 +92,27 @@ const Navbar = () => {
                         exit={{ opacity: 0, height: 0 }}
                         className="md:hidden bg-white/95 backdrop-blur-md mt-4 rounded-2xl overflow-hidden shadow-2xl border border-nature-100"
                     >
-                        <div className="flex flex-col p-4 gap-4">
+                        <div className="flex flex-col p-4 gap-2">
                             {navLinks.map((link) => (
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="text-left text-lg font-bold text-slate-700 hover:text-nature-600 transition-colors px-4 py-3 rounded-xl hover:bg-nature-50 border border-transparent hover:border-nature-100"
+                                    onClick={(e) => {
+                                        setMobileMenuOpen(false);
+                                        // If we are on home page, let the default anchor behavior work
+                                        // But sometimes it needs a nudge if the menu transition is slow
+                                        if (window.location.pathname !== '/') {
+                                            window.location.href = '/' + link.href;
+                                        }
+                                    }}
+                                    className="text-left text-lg font-black text-slate-700 hover:text-nature-600 transition-colors px-6 py-4 rounded-2xl hover:bg-nature-50 border border-transparent hover:border-nature-100 flex items-center justify-between group"
                                 >
                                     {link.name}
+                                    <ArrowRight size={18} className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-nature-500" />
                                 </a>
                             ))}
                         </div>
+
                     </motion.div>
                 )}
             </AnimatePresence>
