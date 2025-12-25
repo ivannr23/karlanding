@@ -102,7 +102,7 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-nature-50 selection:bg-nature-200 selection:text-nature-900 overflow-x-hidden">
-      {location.pathname === '/' && (
+      {location.pathname === '/' && !loading && (
         <motion.div
           id="scroll-progress"
           style={{ scaleX }}
